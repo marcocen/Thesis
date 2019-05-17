@@ -1,0 +1,96 @@
+#+TITLE: Manual de Instalación
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
+
+* Descripción
+
+El presente documento es un breve manual de uso del software
+desarrollado en el marco del proyecto de grado "Ingeniería Dirigida
+por Modelos aplicada a la configuración de redes de computadoras".
+
+En el mismo se describirán los pasos para crear un proyecto que
+utilice el perfil mdcms, para crear elementos en un modelo haciendo
+uso del perfil y finalmente para ejecutar la transformación provista.
+
+* Proyecto
+
+Para crear un proyecto Papyrus que utilice el modelo, el primer paso
+es hacer click en "File > New > Proyect":
+
+[[file:images/proyecto_1.png]]
+
+A continuación se debe elegir el tipo de proyecto "Papyrus Project"
+dentro de la categoría "Papyrus":
+
+[[file:images/proyecto_2.png]]
+
+En el siguiente paso dejamos todo como está:
+
+[[file:images/proyecto_3.png]]
+
+A continuación elegiremos el nombre del proyecto, "Test" en este caso:
+
+[[file:images/proyecto_4.png]]
+
+En la siguiente ventana realizaremos dos acciones. Primero
+seleccionaremos el tipo de representación "Deployment Diagram":
+
+[[file:images/proyecto_5.png]]
+
+Luego hacemos click en "Browse Registered Profiles" y en la ventana
+que aparece eligiremos "MDCMS":
+
+[[file:images/proyecto_6.png]]
+
+Damos "Finish" y tendremos creado nuestro proyecto.
+
+* Modelo
+
+Una vez creado el proyecto, nos encontraremos con la siguiente
+perspectiva:
+
+[[file:images/modelo_1.png]]
+
+De la paleta de la izquierda podremos arrastrar elementos al lienzo
+principal. Ahora agregaremos un "Device", ya que queremos representar
+un PC:
+
+[[file:images/modelo_2.png]]
+
+Si hacemos click en el elemento creado, en la vista "Properties", en
+la pestaña "Profile" podremos hacer click en el boton "+" para agregar
+más estereotipos:
+
+[[file:images/modelo_3.png]]
+
+Como en este caso queremos representar un PC, en el diálogo que
+aparece haremos click en "PC" y en el botón "->", para agregar dicho
+estereotipo:
+
+[[file:images/modelo_5.png]]
+
+Finalmente tenemos representado un PC. Todo lo que resta ahora es, en
+la pestaña "Profile", desplegar el estereotipo y completar los
+atributos que se presentan:
+
+[[file:images/modelo_6.png]]
+
+* Transformación
+
+Una vez tenemos un modelo creado, realizar la transformación para
+obtener código puppet es muy sencilla.
+
+En el model explorer debemos ubicar el archivo .uml asociado a nuestro
+modelo y hacer click derecho sobre el mismo:
+
+[[file:images/transformacion_1.png]]
+
+Al final de la lista que se despliega, encontraremos un menú "Acceleo
+Model to Text", dentro del cual hay una opción "Generate Mdcm2puppet":
+
+[[file:images/transformacion_2.png]]
+
+Al hacer click en dicha opción, se llevará a cabo la transformación,
+luego de cuya finalización tendremos un directorio "src-gen" con el
+código generado:
+
+[[file:images/transformacion_3.png]]

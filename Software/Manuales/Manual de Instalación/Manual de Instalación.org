@@ -1,0 +1,112 @@
+#+TITLE: Manual de Instalación
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
+* Descripción
+El presente documento describe los pasos para instalar el software
+desarrollado en el marco del proyecto de grado "Ingeniería Dirigida
+por Modelos aplicada a la configuración de redes de computadoras".
+* Dependencias
+Para instalar el software es necesario contar con una instalación
+existente del Entorno de Desarrollo =Eclipse=, con algunos paquetes
+extra.
+** Resumen
+
+De forma resumida, se precisa el siguiente ambiente configurado:
+
+- =Eclipse Modeling Tools= [fn:2] 2018-09
+- =Papyrus= [fn:3] 4.1.0.201809120950
+- =Acceleo= [fn:4] 3.7.8.201902261618
+
+Las versiones referenciadas son últimas con las que se testeó el
+software, sin perjuicio de que el mismo funcione correctamente con
+versiones más nuevas.
+** Eclipse
+
+Para la instalación de =Eclipse= se recomienda utilizar la herramienta
+=Eclipse Oomph=[fn:1]. Luego de descargar =Oomph=, se debe ejecutar,
+lo que presenta la siguiente ventana, en la cual se selecciona
+=Eclipse Modeling Tools=:
+
+[[file:images/oomph_main.png]]
+
+En la siguiente ventana se debe seleccionar la versión =2018-09=:
+
+[[file:images/oomph_selection.png]]
+
+Al hacer click en =Install= comienza la instalación, durante la cual
+se presentan varias licencias que se deben aceptar para continuar con
+la instalación.
+
+Luego de completada la instalación, =Oomph= permitirá ejecutar =Eclipse=:
+
+[[file:images/oomph_launch.png]]
+
+Esto completa la instalación de =Eclipse=
+
+** Paquetes
+
+Todos los paquetes a instalar se encuentran en los repositorios por
+defecto de eclipse.
+*** Papyrus
+=Papyrus= se instala desde el diálogo de instalación de software de
+=Eclipse=, que se encuentra en "Help > Install New Software...".
+
+Al seleccionar como fuente "--All Available Sites--" , se puede
+encontrar =Papyrus for UML= bajo la categoría "Modeling":
+
+[[file:images/papyrus.png]]
+
+Luego de seleccionada la opción, se debe continuar con el proceso de
+instalación, aceptando las licencias que se muestran.
+
+Al final la instalación de =Papyrus=, se pedirá para reiniciar
+=Eclipse=. Es conveniente ignorar esta petición para instalar
+=Acceleo= inmediatemente.
+
+*** Acceleo
+=Acceleo= no se instala desde el diálogo de instalación de software
+como =Papyrus=, sino que se instala desde el =Eclipse Marketplace=,
+ubicado en "Help > Eclipse Marketplace...".
+
+Una vez abierto se puede utilizar el campo de búsqueda para encontrar
+=Acceleo=, el cual se instala haciendo click en "Install".
+
+[[file:images/acceleo.png]]
+
+Similar a la instalación de =Papyrus=, se debe continuar el proceso de
+instalación, al fin del cual se debe reiniciar =Eclipse=.
+
+* Instalación
+La instalación de los plugins es muy sencilla.
+
+En primer lugar se debe contar con todos los plugins:
+
+- Plugin mdcms, que provee el perfil UML.
+- Plugin mdcms2puppet, que provee la transformación de modelo mdcms a
+  código puppet.
+- Plugin mdcms2puppet-ui, que agrega un elemento al menú de click
+  derecho sobre los archivos .uml.
+
+A continuación la instalación consiste en los siguientes simples
+pasos:
+
+1. Encontrar el directorio de instalación de =Eclipse=.
+2. Ubicar allí el directorio "dropins".
+3. Copiar los .jar de los plugins a dicho directorio.
+4. Iniciar =Eclipse=.
+
+Luego de iniciar =Eclipse= se puede comprobar que los plugins están
+instalados navegando a "Help > About Eclipse IDE > Installation
+Details" y en la pestaña "Plugins" de la ventana que aparece, buscar
+el nombre de los plugins.
+
+[[file:images/plugins.png]]
+
+* Footnotes
+
+[fn:4] [[https://www.eclipse.org/acceleo/][Página principal del proyecto Acceleo]]
+
+[fn:3] [[https://www.eclipse.org/papyrus/][Página principal del proyecto Papyrus]]
+
+[fn:2] [[https://www.eclipse.org/downloads/packages/release/2008-09/r/eclipse-modeling-tools][Página de descarga de Eclipse Modeling Tools]]
+
+[fn:1] [[https://projects.eclipse.org/projects/tools.oomph][Página principal de Eclipse Oomph]]
