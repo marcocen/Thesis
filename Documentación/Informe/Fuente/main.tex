@@ -1,0 +1,40 @@
+\documentclass [ a4paper, paper=a4, fontsize=10pt, , headings=normal,
+numbers=noenddot, headinclude, footinclude , index=totoc, twoside,
+openright ]{scrbook}
+\include{aux/includes}
+% Qué partes se incluyen en la generación del documento
+% \includeonly{FrontMatter/Cover,MainMatter/TimeConstraints,MainMatter/ImplRefin,MainMatter/Examples,Appendix/Proofs}
+
+\begin{document}
+% Front matter
+\frontmatter
+\include{aux/Cover}
+\include{resumen/Resumen}
+
+\tableofcontents
+
+% Main matter
+\mainmatter \pagestyle{fancy} \fancyhf{}
+\lhead{\nouppercase{\textsl{\rightmark}}}
+\rhead{\nouppercase{\textsl{\leftmark}}} \fancyhead[LE,RO]{\thepage}
+
+\include{capitulos/chap01}
+\include{capitulos/chap02}
+\include{capitulos/chap03}
+\include{capitulos/chap04}
+\include{capitulos/chap05}
+\include{capitulos/chap06}
+\include{capitulos/chap07}
+\include{capitulos/chap08}
+% Para ágregar un \newpage en la tabla de contenidos
+% \addtocontents{toc}{\protect\newpage}}
+\addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
+
+% Back matter
+\backmatter
+% Bibliografía
+\bibliographystyle{apalike}
+\bibliography{bibliografia/biblio}
+
+\end{document}
+

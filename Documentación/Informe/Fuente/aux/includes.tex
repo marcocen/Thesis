@@ -1,0 +1,147 @@
+
+\usepackage [ a4paper, ignorehead, ignorefoot, ignoremp,
+asymmetric % , showframe
+, twoside, pdftex , papersize={17cm,24cm} , left = 2.50cm, right =
+1.50cm , top = 2.70cm, bottom = 2.70cm , headsep = 0.5cm, footskip =
+1.0cm , marginparsep = 0.3cm, marginparwidth = 1.2cm ]{geometry}
+
+
+% Paquetes
+\usepackage[utf8]{inputenc} \usepackage[T1]{fontenc}
+\usepackage{lmodern} \usepackage[scaled=.85]{helvet}
+\usepackage{times} \usepackage{xspace,calc} \usepackage{url}
+\usepackage{fancyhdr} \usepackage{graphicx}
+\usepackage[spanish,english]{babel} \usepackage{latexsym}
+\usepackage{amsmath,amssymb,mathrsfs,stmaryrd} \usepackage{amsthm}
+\usepackage{semantic} \usepackage{multirow}
+\usepackage{float}
+\usepackage{chngpage}    
+\usepackage{ipa} \usepackage[usenames,dvipsnames]{xcolor}
+		
+\usepackage{epigraph} \renewcommand{\epigraphrule}{0pt}
+		
+\usepackage[title, titletoc]{appendix}
+    
+\addto\captionsenglish{% Replace "english" with the language you use
+  \renewcommand{\contentsname}%
+  {Contenido}%
+}
+    
+\addto\captionsenglish{%
+  \renewcommand\appendixname{Anexo}
+  \renewcommand\appendixpagename{Anexos} }
+		
+\usepackage{tocloft} \setlength{\cftbeforechapskip}{6pt}
+\tocloftpagestyle{empty}
+		
+\usepackage[all]{xy} \usepackage{caption} \usepackage{subcaption}
+
+\usepackage[explicit]{titlesec} \usepackage{lipsum}
+
+\titlespacing*{\section}{0pt}{\baselineskip}{\baselineskip}
+\titlespacing*{\subsection}{0pt}{\baselineskip}{\baselineskip}
+\titlespacing*{\subsubsection}{0pt}{\baselineskip}{0.5\baselineskip}
+
+\usepackage[unicode=true,colorlinks,urlcolor=CadetBlue,linkcolor=BlueViolet,citecolor=BlueViolet,linktocpage=true]{hyperref}
+
+\newcommand{\TODO}[1]{{\color{red}ToDo: #1}}
+		
+\newcommand{\red}[1]{{\color{red}#1}}
+
+\newlength\chapnumb \setlength\chapnumb{4cm}
+
+\titleformat{\chapter}[block] {\normalfont\sffamily}{}{0pt}
+{\parbox[b]{\chapnumb}{%
+    \fontsize{120}{110}\selectfont\thechapter}%
+  \parbox[b]{\dimexpr\textwidth-\chapnumb\relax}{%
+    \raggedleft%
+    \hfill{\LARGE#1}\\
+    \rule{\dimexpr\textwidth-\chapnumb\relax}{0.4pt}}}
+				
+\titleformat{name=\chapter,numberless}[block]
+{\normalfont\sffamily}{}{0pt} {\parbox[b]{\chapnumb}{%
+    \mbox{}}%
+  \parbox[b]{\dimexpr\textwidth-\chapnumb\relax}{%
+    \raggedleft%
+    \hfill{\LARGE#1}\\
+    \rule{\dimexpr\textwidth-\chapnumb\relax}{0.4pt}}}
+			
+% Colored Boxes
+\newlength{\savedparindent}
+\newcommand{\SaveIndent}{\setlength{\savedparindent}{\parindent}}
+\newcommand{\RestoreIndent}{\setlength{\parindent}{\savedparindent}}
+
+\newcommand{\InGray}[1]{ \SaveIndent{}
+  % \noindent{}
+  \fcolorbox[rgb]{0,0,0}{0.95,0.95,0.95}{
+    \begin{minipage}{0.965\linewidth}
+      \RestoreIndent{}%
+      #1
+    \end{minipage}
+  } }
+
+\newcommand{\Review}[1]{ \SaveIndent{}
+  % \noindent{}
+  \fcolorbox[rgb]{0,0,0}{0.88,0.88,0.88}{
+    \begin{minipage}{0.965\linewidth}
+      \textbf{Review:}\\
+      \RestoreIndent{}%
+      #1
+    \end{minipage}
+  } }
+		
+% Figures
+\newcommand{\tablefigure}[3]{
+  \begin{figure}[ht]
+    \center \rule{\textwidth}{0.5pt}\\[0.4cm]
+    \begin{tabular}{l}
+      \input{#1}
+    \end{tabular}\\[0.4cm]
+    \center \rule{\textwidth}{0.5pt}
+    \centering \caption{\label{#2} #3}
+  \end{figure}
+}
+
+\newcommand{\tablepicture}[4]{
+  \begin{figure}[ht]
+    \begin{center}
+      \rule{\textwidth}{0.5pt}\\[0.4cm]
+      \includegraphics[width=#1,keepaspectratio]{#2}\\[0.4cm]
+      \rule{\textwidth}{0.5pt}
+      \caption{\label{#3} #4}
+    \end{center}
+  \end{figure}
+}
+
+\newcommand{\tablepicturerotate}[5]{
+  \begin{figure}[ht]
+    \begin{center}
+      \rule{\textwidth}{0.5pt}\\[0.4cm]
+      \includegraphics[angle=#1,width=#2,keepaspectratio]{#3}\\[0.4cm]
+      \rule{\textwidth}{0.5pt}
+      \caption{\label{#4} #5}
+    \end{center}
+  \end{figure}
+}
+
+% Header and Footer
+\pagestyle{fancy} \fancyhf{} \lhead{\nouppercase{\textsl{\rightmark}}}
+\rhead{\nouppercase{\textsl{\leftmark}}} \fancyhead[LE,RO]{\thepage}
+
+% Paragraph
+\setlength{\parindent}{0cm} % sirve para que no indente por defecto los párrafos
+\setlength{\parskip}{8pt} % sirve para dejar un espacio entre párrafos
+
+% Hyphenation
+\hyphenation{a-gra-de-ci-mien-to mo-de-los pro-ble-ma}
+
+\fussy % sirve para que no te acalambre con los underfull y overfull
+\usepackage{enumitem,amssymb}
+\newlist{todolist}{itemize}{2}
+\setlist[todolist]{label=$\square$}
+\usepackage{pifont}
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+\newcommand{\done}{\rlap{$\square$}{\raisebox{2pt}{\large\hspace{1pt}\cmark}}%
+\hspace{-2.5pt}}
+\newcommand{\wontfix}{\rlap{$\square$}{\large\hspace{1pt}\xmark}}

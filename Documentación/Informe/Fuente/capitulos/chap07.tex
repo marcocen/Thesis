@@ -1,0 +1,70 @@
+\chapter{Conclusiones} \label{Conclusiones}
+En este capítulo se presentan conclusiones obtenidas del proyecto, analizando tanto las fortalezas como las debilidades que surgieron del mismo, y tomando como referencia los objetivos planteados al inicio. También se incluye una sección de trabajo futuro, que detalla las posibilidades de extensión que pueden colaborar en darle más forma al producto.
+
+\section{Fortalezas}
+A lo largo del trabajo se aprovecharon herramientas existentes para facilitar no sólo la construcción del prototipo sino para facilitar en un futuro la extensión del mismo en un producto más completo. El uso de UML trajo consigo una plétora de proyectos de software que permiten la manipulación y transformación de modelos, lo que permite un proceso más sencillo y menos propenso a errores comparado con el desarrollo de una herramienta de porte similar desde cero.
+
+El uso de lenguajes y herramientas estándar en la industria también permite la integración con otras herramientas. En particular el uso de UML permitió hacer uso de Papyrus y no tener que crear un editor gráfico, el uso de Acceleo permitió que la generación de texto fuera más sencilla de lo que habría sido si se hubiera tenido que parsear XML y generar el mismo a partir de esta representación. En la sección \ref{Trabajo a futuro} se explorarán más a fondo las posibilidades que el uso de herramientas estándar trae.
+
+El uso de la herramienta facilita la administración de la configuración de la red, uniendo en un solo modelo la estructura física y la configuración de los nodos. La existencia de un lenguaje común también simplifica la comunicación entre miembros de un equipo, lo cual disminuye los problemas asociados a la misma.
+
+Asimismo, una herramienta con un editor visual y una semántica sencilla baja considerablemente la barrera de acceso al uso de sistemas de manejo de la configuración. Arrastrar nodos, conectarlos, asignarles estereotipos y completar campos, todo desde una interfaz gráfica, es mucho menos amenazador que enfrentarse a un editor de texto en blanco y comenzar a escribir código puppet. Esperamos que esto permita el acercamiento de nuevos usuarios que se habrían visto intimidados por la aparente dificultad de utilizar un CMT.
+
+Y es en esta posibilidad que creemos se encuentra el mayor valor del trabajo. Con el aumento de la complejidad de los entornos de trabajo, de la cantidad de servidores y workstations presentes y la creciente esencialidad del uso de los mismos en cualquier tipo de negocio, la posibilidad de perder un servidor o puesto de trabajo y poder reemplazarlo, con la seguridad de que el estado del mismo va a ser el adecuado es imperante. Es por esto que el uso de CMTs es cada vez más importante y la existencia de una herramienta que disminuye la dificultad de su utilización por parte de todos los miembros de un equipo de trabajo podría facilitar la implementación de los mismos.
+
+\section{Debilidades}
+La primera debilidad que se le puede observar al prototipo es la magra selección de elementos de configuración disponibles: una sola opción de servidor http, dos para manejadores de bases de datos, un solo servidor de aplicaciones, etc. Esto se podría subsanar con un sistema robusto de extensión, lo cual nos lleva a la siguiente debilidad.
+
+La mayor debilidad del prototipo es la dificultad de extender el mismo, ya que para agregar algún nuevo elemento se debe definir el mismo a nivel de metamodelo. Esta tarea implica recrear el ambiente de desarrollo, tomar el código fuente y estudiarlo para comprender qué modificar, agregar el elemento y luego pasar a modificar la transformación con los cambios correspondientes, lo cual es muy trabajoso.
+
+Finalmente, aún se necesita un conocimiento al menos básico del CMT a utilizar (Puppet) para poder hacer uso del código generado. Esto se podría subsanar brindando la instalación de los componentes relacionados a Puppet, esto se lograría creando un script que instale y configure un puppet master, insertando el código generado en el directorio correspondiente, y otro que se ejecute en los clientes, el cual instale y configure el puppet agent, apuntando al puppet master creado. 
+
+\section{Trabajo Futuro} \label{Trabajo a futuro}
+El primer trabajo a futuro (y quizás el más sencillo) podría ser agregar nuevos targets a la transformación. Esto es, permitir generar código no sólo para Puppet, sino para Chef, Ansible, o cualquiera de los nuevos sistemas de manejo de configuración que surgen día a día. Para esto sólo abría que escribir una nueva transformación para cada uno y agregarlas al plugin generado, por lo que la mayor carga del trabajo se encontraría en encontrar una relación entre los diferentes elementos del modelo y los elementos correspondientes en el lenguaje utilizado por el sistema de configuración deseado.
+
+De la mano de este trabajo se encuentra también la posibilidad de agregar otros tipos de salida, como pueden ser reportes de distintos aspectos de la red: un reporte de cuántas impresoras hay y las características de cada una, un reporte de a cuántos hosts sirve un router en particular, un reporte de cuántos switches en cascada se encuentran en la red, etc. 
+
+Otro trabajo podría ser continuar extendiendo el lenguaje de modelado y las transformaciones, agregando más elementos de configuración. Esto permitiría que un mayor número de usuarios encuentre en la herramienta una alternativa viable a un CMT tradicional. De todos modos, esto puede ser laborioso e ineficaz si el equipo de desarrollo es reducido o si el usuario final tiene requisitos muy específicos a su entorno; es por esto que el siguiente ítem se encuentra en este listado.
+
+De forma similar al punto anterior, también se podría agregar la capacidad de definir los atributos de los componentes de forma dinámica, dicho de otra forma, que el usuario sea capaz de ingresar cualquier atributo disponible en Puppet para dicho componente, en lugar de depender de los que se hayan definido a nivel de metamodelo. Esto también evitaría la necesidad de actualizar el metamodelo cada vez que un componente de un CMT introduzca un nuevo atributo, o modifique uno existente, ya que el usuario podría, a nivel de modelo, modificar el atributo ingresado.
+Hay diferentes formas de lograr esto, la más sencilla sería permitir atributos de entrada libre por el usuario, y manejar dicho atributo a nivel de transformación. Sin embargo, hay que considerar que algunos Configuration Managers (Puppet por ejemplo) no admiten errores de sintaxis, por lo que en principio el usuario no podría ingresar un atributo que no este definido en el CMT, y se tendría que agregar algún tipo de validación, o permitir la eventual generación de scripts inválidos, lo que no es deseable.
+
+Finalmente, el proyecto más ambicioso sería crear un mecanismo sencillo de extensión mediante el cual se puedan agregar elementos de configuración nuevos al producto de una manera sencilla. Una opción sería tomar un tipo de entrada textual, donde se indiquen las características del nuevo elemento de configuración como pueden ser el nombre, los atributos asociados, qué código nuevo se generaría a partir de la presencia del mismo en un modelo, y mediante una transformación, inyectarlo en el metamodelo y transformación, generando una nueva versión de producto.
+
+%\item Fortalezas
+%\item[\done] Se logro armar una herramienta capaz de generar scripts en base al modelo.
+%\item[\done] Facilita la administración. 
+%\item[\done] Facilita la entrada a estas herramientas y a la %configuración de redes. No se necesitan conocimientos de %infraestructura para utilizarla.
+%\item Se provee de una interfaz gráfica para el manejo de redes.
+%\item[\done] Se obtienen las ventajas de usar CMTs.
+%\item[\done] La estandarización (extensión) del modelado puede %permitir la integración con otras herramientas.
+
+%\begin{itemize}
+    %\item Debilidades
+    %\begin{todolist}
+    %\item[\done] Flexibilidad actual para la generación de scripts.
+    %\item[\done] Pocos elementos de software disponibles.
+    %\item[\done] Es necesario definir cada componente a nivel de metamodelo.
+    %\item[\done] Aún se necesita un mínimo de conocimiento de CMTs para utilizar los scripts generados.
+    %\end{todolist}
+%\end{itemize}
+
+%\begin{itemize}
+%\item Posibilidades de extensión de la herramienta
+%  \begin{todolist}
+%  \item[\done] Posibilidad de adaptar a diferentes Configuration Managers (Chef, Ansible).
+%  \item[\done] Posibilidad de agregar más elementos de software/configuración (aparte de los ya incluidos: Apache, Tomcat, etc).
+%  \item Posibilidad de agregar atributos a los elementos de software/configuración para permitir mayor libertad en la definición de los modelos.
+%  \item[\done] Generar otros tipos de salida (Generación de reportes, o ejemplos que no se lleguen a implementar en el proyecto actual).
+%  \item[\done] Generar mecanismos sencillos de extensión de las transformaciones.
+%  \end{todolist}
+%\end{itemize}
+
+%Motivaciones Proyecto
+%Proveer una interfaz más accesible a personas sin conocimiento técnico de redes, para que sean capaces de diseñar y manejar grupos de nodos y configuraciones de redes simples.
+%Proveer de un componente gráfico para facilitar la administración de una infraestructura, facilitando los cambios al tener un mecanismo de generación automatizado de scripts.
+%El público al que va dirigido es a personas que no deseen tener un conocimiento extenso de los Configuration Managers, al dar la posibilidad de generar la transformación a partir de elementos gráficos. No va dirigido a expertos en dichas herramientas o administradores de redes que quieran tener una configuración detallada y específica (fine tuning).
+
+%%% Local Variables:
+%%% TeX-master: "../main"
+%%% End:

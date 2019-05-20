@@ -1,0 +1,17 @@
+\chapter*{Resumen}
+
+El manejo de la configuración en el contexto de las tareas de administración de sistemas es una actividad que se ha vuelto esencial en los últimos años y permite indicar, muchas veces de forma puramente declarativa, el estado que se desea de un sistema en particular. El paradigma de Ingeniería Dirigida por Modelos (MDE por sus siglas en inglés) propone la construcción de software basado en una abstracción de su complejidad a través de la definición de modelos y en un proceso de construcción (semi)automático guiado por transformaciones de estos modelos.
+
+En esta tesis se estudia la posibilidad de utilizar el paradigma de MDE para buscar una solución al problema planteado. Para hacer esto posible, se cuenta con un modelo de representación de la estructura de red y de sus componentes, así como de componentes de software relacionados, e incluyendo parámetros de configuración de los mismos. A su vez, se busca cierta automatización que permita generar scripts de configuración a partir de necesidades expresadas en este modelo de visualización a más alto nivel de abstracción.
+
+Se comienza con un estudio del estado del arte, mencionando las características similares proporcionadas por herramientas existentes, donde se puede ver aproximaciones a las diferentes características por separado, existiendo varias herramientas de generación y simulación de redes por un lado, y de modelado de topologías por otro, pero ninguna que posea ambas, es decir, la capacidad de modelar una topología deseada, y asistir en el manejo de la configuración en dicha topología.
+
+A partir de esto, se opta por definir un perfil UML con el fin de extender el lenguaje con el conjunto de componentes necesarios. La solución descripta en dicho perfil se conforma por componentes físicos necesarios para la configuración de una topología, como lo son routers, switches, computadoras, servidores, y periféricos; componentes lógicos como sistemas operativos y una selección de componentes de software; y finalmente el componente de configuración, que es la base del valor adicional aportado por este trabajo.
+
+Una vez conformado el perfil UML, se trabaja sobre las transformaciones de modelo a texto, que en este caso serán archivos de configuración para el sistema en cuestión. Dicha configuración se realizará utilizando como soporte sistemas de manejo de la configuración (Configuration Manager Tools), como lo son Puppet, Chef o Ansible, por nombrar algunos ejemplos.
+
+Por último se analiza un caso de estudio para mostrar la viabilidad y utilidad de la solución planteada, utilizando como partida el modelo de una topología tipo, con los diferentes componentes definidos, y obteniendo un conjunto de scripts de configuración aplicables a la herramienta de manejo de la   configuración.
+
+Las conclusiones de la tesis consisten en un conjunto de fortalezas y debilidades, destacando que la solución brinda un punto de entrada al manejo de la configuración utilizando herramientas de MDE, además de permitir una solución a la administración de sistema de red, brindado a través del perfil UML. Al mismo tiempo, es un punto de partida para que futuros trabajos puedan extender los componentes definidos en este trabajo, así ofreciendo mayor libertad al momento de administrar un sistema.
+
+\textbf{Palabras clave:} Model driven engineering, UML, UML profile, Configuration Manager, Eclipse, Papyrus, Acceleo, Puppet, Chef, Ansible, network, metamodel, network configuration, model to text.
