@@ -2,16 +2,16 @@
 
 En esta sección se detallan las implementaciones tecnológicas de los objetivos del proyecto, a partir de las soluciones mencionadas en el capítulo anterior.
 Estos objetivos son la definición de un lenguaje de modelado, que permitirá representar en forma de diagrama el estado de una topología de red. Esto incluye la creación del metamodelo en base a la Definición de Dominio Específico, y la implementación del perfil UML para agregar la extensiones de UML necesarias. 
-La implementación de una transformación de modelo a texto, que permita la creación de scripts de configuración a partir de dichos modelos.
-La integración de los scripts de configuración generados con las herramientas de configuración (CMTs), detallando como estas herramientas utilizan los scripts para llevar a cabo la configuración. 
+Además, la implementación de una transformación de modelo a texto, que permita la creación de scripts de configuración a partir de dichos modelos.
+Finalmente, la integración de los scripts de configuración generados, con las herramientas de configuración (CMTs), detallando como estas herramientas utilizan los scripts para llevar a cabo la configuración. 
 
 \section{Implementación del modelo UML}
-Partiendo de las decisiones que se tomaron en el capitulo anterior, en esta sección se especifica el modelo UML definido para representar el problema objetivo. De forma análoga a la sección Definición de Dominio Específico, se tendrá el metamodelo separado en dos grandes partes, por un lado se encuentra la topología, con nodos lógicos y físicos, y por otro lado se tiene la configuración de estos nodos.
+Partiendo de las decisiones que se tomaron en el capitulo anterior, en esta sección se especifica el modelo UML definido para representar el problema objetivo. De forma análoga a la sección Definición de Dominio Específico (Sección \ref{Definicion de Dominio Específico}), se tendrá el metamodelo separado en dos grandes partes, por un lado se encuentra la topología, con nodos lógicos y físicos, y por otro lado se tiene la configuración de estos nodos.
 
 A continuación se describe cada sección por separado, ilustrando las decisiones tomadas en cada una de ellas, para luego mostrar el resultado final del metamodelo, que será el punto de partida para la implementación del perfil UML,y por ende la transformación de modelo a texto.
 
 \subsection{Modelado de la Topología}
-El primer componente que se debe considerar dentro de la topología es el de \textbf{Nodo}, dicho componente encapsula todo tipo de nodo, ya sea físico, o lógico, por lo que puede representar desde un servidor hasta una instancia de base de datos. 
+El primer componente que se debe considerar dentro de la topología es el de \textbf{Nodo}, dicho componente encapsula todo tipo de nodo, ya sea físico o lógico, por lo que puede representar desde un servidor hasta una instancia de base de datos. 
 Este concepto es esencial ya que la configuración que se definirá debe ser capaz de ser aplicada tanto a dispositivos lógicos como físicos, y es necesario que haya un componente en común para representar ambos tipos de nodos independientemente.
 
 De esto, y tal como se explicó anteriormente en la sección Definición de Dominio Específico, surge que se tendrán dos tipos de nodos: físicos y lógicos, lo que se representará con una relación de herencia sobre Nodo, quedando representado en la Figura \ref{fig:uml:node}.
@@ -44,7 +44,7 @@ Respecto a los nodos físicos, se mantiene la definición de dominio, es decir, 
 Los atributos de cada componente fueron seleccionados en base a la información de interés para cada uno en el contexto de la topología y configuración, siempre teniendo en cuenta que los principales son heredados del nodo Físico (Physical).
 
 \subsubsection{Nodo Lógico}
-De la misma forma, los nodos lógicos fueron seleccionados en base a las decisiones de definición de dominio previamente realizadas, por lo tanto, se considerarán como especialización de Lógico (Lógical) Firewall, Sistema Operativo (OS), Firmware, Ambiente de Ejecución (Runtime), Servidor de Aplicaciones (ApplicationServer), Base de Datos (DBEngine), y Servidor HTTP (HTTPServer).
+De la misma forma, los nodos lógicos fueron seleccionados en base a las decisiones de definición de dominio previamente realizadas, por lo tanto, se considerarán como especialización de Lógico (Lógical): Firewall, Sistema Operativo (OS), Firmware, Ambiente de Ejecución (Runtime), Servidor de Aplicaciones (ApplicationServer), Base de Datos (DBEngine), y Servidor HTTP (HTTPServer).
 
 A su vez, cada clase tiene una especialización en base los componentes de software que se consideraron para cada uno, por lo que se tienen las especializaciones Java para Runtime; Tomcat para ApplicationServer; Postgresql y MySQL para DBEngine; y Apache para HTTPServer. 
 
@@ -73,7 +73,7 @@ Una vez definidos los metamodelos de Nodo, Físico y Lógico, sólo resta unific
 
 
 \subsection{Modelado de la Configuración}
-En el caso de la configuración, como se discutió previamente, se tendrán distintos tipos. El tipo de configuración más básico es el de configuración Abierta (Open), que consiste simplemente de una descripción, ya sea a alto nivel o con opciones de configuración específicas de cualquier Nodo, se utiliza particularmente para Nodos que no poseen una configuración aplicable, y se desea tener un registro, por ejemplo los componentes Dispositivo.
+En el caso de la configuración, como se discutió previamente, se tendrán distintos tipos. El tipo de configuración más básico es el de configuración Abierta (Open), que consiste simplemente de una descripción, ya sea a alto nivel o con opciones de configuración específicas de cualquier Nodo, se utiliza particularmente para Nodos que no poseen una configuración aplicable y se desea tener un registro, por ejemplo para los componentes Dispositivo.
 
 Luego, se tiene la configuración de Registro (Registry), que aplica solamente a los nodos con Sistema Operativo Windows, y son configuraciones que se pueden aplicar a las entradas de dichos registros.
 
@@ -178,7 +178,7 @@ El resultado final del diagrama de estereotipos se encuentra en la Figura \ref{f
 \end{figure}
 
 \subsection{Restricciones}
-Como detalle final a la implementación del perfil, es necesario agregar las restricciones (\textbf{Constrains}) adecuadas. En este caso, las restricciones que se deben agregar son aquellas que relacionan la Configuración con los nodos Lógicos. Los elementos de Configuración que se corresponden a un componente de nodo Lógico, es decir, ApacheVhost, FirewallRule, JavaOracle, TomcatApp, PSQLDB, y MySQLDB, deben ser desplegados sobre su correspondiente elemento de software, de forma de evitar que elementos incompatibles sean relacionados entre sí.
+Como detalle final a la implementación del perfil, es necesario agregar las restricciones (\textbf{Constrains}) adecuadas. En este caso, las restricciones que se deben agregar son aquellas que relacionan a la Configuración con los nodos Lógicos. Los elementos de Configuración que se corresponden a un componente de nodo Lógico, es decir, ApacheVhost, FirewallRule, JavaOracle, TomcatApp, PSQLDB, y MySQLDB, deben ser desplegados sobre su correspondiente elemento de software, de forma de evitar que elementos incompatibles sean relacionados entre sí.
 Para ello se crea una restricción (Constrain) para cada uno de estos estereotipos, que explicita el tipo de estereotipo al cuál puede ser desplegado.
 
 A continuación se presenta una descripción de las restricciones agregadas a cada componente de Configuración, asociado a su correspondiente componente Lógico:
@@ -203,9 +203,9 @@ El resultado final del diagrama de estereotipos \textbf{Configuration}, incluyen
 
 \subsection{Implementación del Perfil como plugin}
 
-Una vez realizado el perfil, es necesario instalarlo como plug-in, para ello se utiliza un generador de modelos EMF (Eclipse Modelling Framework). Primero se crea un proyecto EMF, utilizando como base el proyecto Papyrus y el perfil UML existentes. Esto generará los archivos descriptores Ecore y Genmodel basados en UML, que son las dos partes que componen un meta-modelo EMF. Luego, en base al Genmodel generado, se podrá generar el código del modelo para el perfil UML.
+Una vez realizado el perfil, es necesario instalarlo como plug-in, para ello se utiliza un generador de modelos EMF (Eclipse Modeling Framework). Primero se crea un proyecto EMF, utilizando como base el proyecto Papyrus y el perfil UML existente. Esto generará los archivos descriptores Ecore y Genmodel basados en UML, que son las dos partes que componen un meta-modelo EMF. Luego, en base al Genmodel generado, se podrá generar el código del modelo para el perfil UML.
 
-Finalmente, se agregan las extensiones necesarias para el plug-in, estas incluyen el paquete Ecore generado, que se agrega automáticamente en el proceso de generación del modelo con EMF; un mapeo de URI para el modelo Ecore que indica el proyecto origen y el plug-in destino del proyecto; y los puntos de extensión (extension points) para el perfil UML, que posee el nombre que tendrá el perfil, asi como la ubicación del perfil implementado (archivo .profile.uml). Esto se puede ver en la Figura \ref{fig:profile:extensions}.
+Finalmente, se agregan las extensiones necesarias para el plug-in, estas incluyen el paquete Ecore generado, que se agrega automáticamente en el proceso de generación del modelo con EMF; un mapeo de URI para el modelo Ecore que indica el proyecto origen y el plug-in destino del proyecto; y los puntos de extensión (extension points) para el perfil UML, que poseen el nombre que tendrá el perfil, así como la ubicación del perfil implementado (archivo .profile.uml). Esto se puede ver en la Figura \ref{fig:profile:extensions}.
 
 \begin{figure}[H]
     \centering
@@ -234,7 +234,7 @@ Luego de la instalación, al crear un nuevo modelo se tendrá la opción de apli
 
 \section{Implementación de la Transformación}
 
-La transformación de modelo a texto se realizará utilizando la herramienta Acceleo, extensión de Eclipse, que permite generación de código en base a plantillas. Para los objetivos de este proyecto, la salida generada por la transformación fue dirigida a Puppet como CMT (Configuration Manager Tool) principal, esto quiere decir que los archivos de configuración generados tiene la sintaxis de dicha herramienta.
+La transformación de modelo a texto se realizará utilizando la herramienta Acceleo, extensión de Eclipse, que permite generación de código en base a plantillas. Para los objetivos de este proyecto, la salida generada por la transformación fue dirigida a Puppet como CMT (Configuration Manager Tool) principal, esto quiere decir que los archivos de configuración generados tienen la sintaxis de dicha herramienta.
 
 De igual forma que en capítulos anteriores, este se podría separar según nodo Físico, Lógico y Configuración, sin embargo, en este caso es conveniente hacer la distinción a partir del tipo de salida que se va a generar. 
 
@@ -254,7 +254,7 @@ En la Figura \ref{fig:transformation:site} se puede ver el modelo origen, el có
 
 Tal como se puede apreciar, se genera un nodo de Puppet por cada componente en el modelo de origen, esto se debe a la funcionalidad en modo de plantilla de Acceleo, que permite obtener la salida de la forma que está plasmada en el archivo de generación.
 
-Este archivo es el punto de partida de la configuración, la información de cada nodo, ya sea físico o lógico se encontrará bajo \textbf{modules/device/manifests}, mientras que los elementos de configuración serán creados en el directorio \textbf{modules/configurations/manifests}.
+Este archivo es el punto de partida de la configuración, la información de cada nodo, ya sea físico o lógico, se encontrará bajo \textbf{modules/device/manifests}, mientras que los elementos de configuración serán creados en el directorio \textbf{modules/configurations/manifests}.
 
 Por otro lado, para la transformación \textbf{mdcms2info}, bajo el directorio \textbf{Information} se encontrarán los archivos de texto plano, cuyo fin es puramente informativo, mientras que en el directorio \textbf{Configuration} se encontrarán los archivos generados a partir de los componentes FreeForm. Esta estructura facilita el manejo de dichos archivos, organizándolos en base a su comportamiento. En la Figura \ref{fig:transformation:structure} se encuentra dicha estructura de archivos a alto nivel.
 
@@ -275,7 +275,7 @@ Los elementos del modelo que pueden generar archivos de información son los sig
     \item En el caso de la configuración, FreeForm es el único que aplica.
 \end{itemize}
 
-Como se mencionó previamente, la generación de estos elementos se ubicará en el directorio \textbf{Information}, con la excepción de FreeForm que se encontrarán bajo \textbf{Configuration}. Para los primeros se creará un directorio por cada nodo Físico, y en dicho directorio se encontrará su información correspondiente, así como de todos los nodos lógicos que pertenezcan a este nodo. Esto se puede ver en la Figura \ref{fig:transformation:information_example}.
+Como se mencionó previamente, la generación de estos elementos se ubicará en el directorio \textbf{Information}, con la excepción de FreeForm los cuales se encontrarán bajo \textbf{Configuration}. Para los primeros se creará un directorio por cada nodo Físico, y en dicho directorio se encontrará su información correspondiente, así como la de todos los nodos lógicos que pertenezcan a este nodo. Esto se puede ver en la Figura \ref{fig:transformation:information_example}.
 
 \begin{figure}[htbp]
     \centering
@@ -314,12 +314,11 @@ Como se mencionó en capítulos anteriores, la distribución de los archivos de 
 En primer lugar se tiene el directorio \textbf{modules/device/manifests}, que contendrá un script con formato adecuado para Puppet por cada nodo Físico en el modelo, todos estos archivos tendrán el nombre del nodo y extension \textbf{.pp}, cada archivo contendrá la declaración de la clase Puppet, e incluirá el resto de la configuración para el nodo. 
 
 Al mismo tiempo se creará un directorio por cada uno de estos nodos, con su nombre, incluyendo los archivos de configuración de Puppet correspondientes a los nodos Lógicos que posea dicho nodo Físico. Esto quiere decir que por cada nodo Físico, se tendrá un archivo de configuración para su propia instancia, y un directorio que contendrá un archivo de configuración por cada una de las instancias de nodo Lógico que tenga asociado.
-
-En el ejemplo de la Figura \ref{fig:transformation:configuration} se puede ver la estructura de archivos generada a partir de un nodo Físico con sus respectivos nodos Lógicos:
+En el ejemplo de la Figura \ref{fig:transformation:configuration} se puede ver la estructura de archivos generada a partir de un nodo Físico con sus respectivos nodos Lógicos.
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=\textwidth]{figures/transformation_implementation/configuration_example0.png}
+    \includegraphics[width=0.8\textwidth]{figures/transformation_implementation/configuration_example0.png}
     \caption{Ejemplo de generación de archivos de Configuración.}
     \label{fig:transformation:configuration}
 \end{figure}
@@ -337,7 +336,7 @@ En la Figura \ref{fig:transformation:configuration_generated} se puede analizar 
 Aquí se puede ver como el archivo de configuración del nodo Físico \textit{Server1.pp} es el encargado de incluir el resto de los componentes Lógicos \textit{MySQL\_Instance.pp}, \textit{ApacheInstallation.pp}, y \textit{Windows.pp}.
 Tanto el componente de \textit{MySQL} como el de Apache genera su correspondiente archivo de configuración que será utilizado por el CMT, en el caso de \textit{Windows} se encuentra vacío debido a que no le fueron asignadas configuraciones de tipo \textit{File} o \textit{Registry}, que puedan ser aplicadas.
 
-Como se mencionaba previamente, algunos elementos generarán tanto un archivo de configuración, como uno de información en texto plano, en este caso los componentes de servidor (Server1) y sistema operativo (Windows) también generan estos archivos, en su correspondiente directorio (Figura \ref{fig:transformation:configuration_generated_1}).
+Como se mencionaba previamente, algunos elementos podrán generar tanto un archivo de configuración, como uno de información en texto plano, en este caso los componentes de servidor (Server1) y sistema operativo (Windows) también pueden generar estos archivos, en su correspondiente directorio (Figura \ref{fig:transformation:configuration_generated_1}).
 
 \begin{figure}[htbp]
     \centering

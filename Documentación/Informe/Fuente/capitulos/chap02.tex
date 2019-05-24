@@ -5,7 +5,7 @@ En este capítulo se hará una revisión de conceptos básicos de la ingeniería
 \section{Estado del Arte}
 \subsection{Herramientas de simulación de redes de computadoras} \label{Herramientas de simulación}
 \subsubsection{M5 Simulator}
-La herramienta de código abierto M5 Simulator es utilizado para permitir la investigación en redes TCP/IP. Provee las características necesarias para simular redes de hosts, incluyendo todas las funcionalidades de un sistema, un detallado sistema de I/O, y la capacidad de simular múltiples sistemas en red.
+La herramienta de código abierto M5 Simulator es utilizada para permitir la investigación en redes TCP/IP. Provee las características necesarias para simular redes de hosts, incluyendo todas las funcionalidades de un sistema, un detallado sistema de I/O, y la capacidad de simular múltiples sistemas en red.
 Se describe como un simulador de arquitecturas de propósito general, con un enfoque hacia networking. \cite{binkert2006m5}
 
 Si bien esta herramienta es capaz de simular redes, no provee un editor gráfico para realizar diagramas de las mismas, lo mismo sucede con las herramientas de generación de topologías que se verán a continuación.
@@ -38,6 +38,16 @@ Es importante notar que esta herramienta se basa en la detección y generación 
     \caption{Ejemplo de diagrama utilizando SolarWinds. \cite{solarwinds}}
     \label{fig:marco:solarwinds}
 \end{figure}
+
+\subsection{Comparación de herramientas con el presente trabajo}
+
+En el proceso de investigación del estado del arte se encontraron varias herramientas relacionadas a distintos aspectos del diseño y administración de redes, los más notables de los cuales se enumeraron en las secciones previas. Sin embargo se observó que en general todas las herramientas encontradas atacan otros aspectos del mantenimiento de redes.
+
+M5 Simulator, por ejemplo, permite describir una red y experimentar sobre la misma, pero no deja de ser una simulación, por lo cual pasar de la simulación al mundo físico requiere volver a implementar todo el trabajo realizado en M5 en los equipos reales, de forma manual.
+
+La herramienta que más relación guarda con el presente trabajo es SolarWinds en el sentido que permite acceder a un diagrama que refleje el estado actual de la red. Sin embargo es una herramienta pasiva, no permite modificar la configuración de la red.
+
+Es aquí que la herramienta a desarrollar difiere de las existentes en el mercado: en lugar de ser una herramienta pasiva es activa, el estado definido en el modelo se verá reflejado en la realidad y no al revés.
 
 \section{Sistemas de Manejo de la Configuración} \label{Sistemas de Manejo de la Configuracion}
 
@@ -182,9 +192,9 @@ Las transformaciones también pueden ser aplicadas a múltiples modelos origen, 
     \label{fig:marco:transformation}
 \end{figure}
 
-De la misma forma en que existen transformaciones para obtener modelos de salida a partir de los modelos de origen, conocidas como transformaciones Model-To-Model, también se pueden generar transformaciones de modelo a texto, conocidas como Model-To-Text. El estándar de la transformación de modelo a texto MOF (mof2text) describe como pasar de un modelo a varios artefactos de texto, ya sea código, especificaciones de configuración, reportes, documentos, etc. En esencia, describe como obtener una representación en texto a partir de un modelo. Una forma de realizar esta transformación es mediante el uso de plantillas (\textit{templates}), donde el texto que se genera a partir de los modelos se especifica a partir de un conjunto de plantillas de texto, que son parametrizadas con los elementos del modelo en cuestión.
+De la misma forma en que existen transformaciones para obtener modelos de salida a partir de los modelos de origen, conocidas como transformaciones Model-To-Model, también se pueden generar transformaciones de modelo a texto, conocidas como Model-To-Text. El estándar de la transformación de modelo a texto MOF (mof2text) describe como pasar de un modelo a varios artefactos de texto, ya sea código, especificaciones de configuración, reportes, documentos, etc. En esencia, describe cómo obtener una representación en texto a partir de un modelo. Una forma de realizar esta transformación es mediante el uso de plantillas (\textit{templates}), donde el texto que se genera a partir de los modelos se especifica a partir de un conjunto de plantillas de texto, que son parametrizadas con los elementos del modelo en cuestión.
 
-En este enfoque un \textit{template}, o plantilla, específica un texto con marcadores a rellenar con datos que serán extraídos de los modelos. Estos marcadores son expresiones que se describen utilizando entidades del metamodelo y consultas (\textbf{queries}) para seleccionar y extraer los valores de los modelos. Estos valores son entonces convertidos a texto utilizando como base un lenguaje de expresiones, y alguna librería de manejo de \textit{strings}. \cite{mof_model2text}
+En este enfoque un \textit{template}, o plantilla, especifica un texto con marcadores a rellenar con datos que serán extraídos de los modelos. Estos marcadores son expresiones que se describen utilizando entidades del metamodelo y consultas (\textbf{queries}) para seleccionar y extraer los valores de los modelos. Estos valores son entonces convertidos a texto utilizando como base un lenguaje de expresiones, y alguna librería de manejo de \textit{strings}. \cite{mof_model2text}
 
 \subsection{Diagramas de deployment}
 Un Diagrama de \textit{deployment} de UML es una representación del estado actual de la configuración de los nodos y los componentes que se ejecutan en esos nodos. Estos diagramas muestran el hardware del sistema, el software instalado en dicho sistema, y el middleware que conecta las maquinas entre sí. \cite{ambler2018deployment}
@@ -198,7 +208,7 @@ En general se utilizan para describir sistemas no triviales, mostrando las difer
     \label{fig:marco:diagram_overview}
 \end{figure}
 
-Los diagramas de deployment se suelen crear durante la etapa de implementación en el ciclo de desarrollo, de forma de mostrar como se distribuyen los nodos en un sistema distribuido, qué artefactos se encuentran en qué nodos, y los componentes y otros elementos que los artefactos implementan. Los nodos representan dispositivos de hardware como computadoras, sensores, impresoras, y demás dispositivos que puedan soportar un ambiente de ejecución. Al mismo tiempo, las relaciones de deploy (o despliegue) y los enlaces de comunicación modelan las conexiones en el sistema. \cite{ibmdeploymentdiagrams}
+Los diagramas de deployment se suelen crear durante la etapa de implementación en el ciclo de desarrollo, de forma de mostrar cómo se distribuyen los nodos en un sistema distribuido, qué artefactos se encuentran en qué nodos, y los componentes y otros elementos que los artefactos implementan. Los nodos representan dispositivos de hardware como computadoras, sensores, impresoras, y demás dispositivos que puedan soportar un ambiente de ejecución. Al mismo tiempo, las relaciones de deploy (o despliegue) y los enlaces de comunicación modelan las conexiones en el sistema. \cite{ibmdeploymentdiagrams}
 
 \begin{figure}[htbp]
     \centering
@@ -247,16 +257,16 @@ A partir de una especificación de modelo en XMI, permite producir un conjunto d
 En particular, EMF Core es un estándar para modelado de datos, por lo que muchas tecnologías y frameworks se basan en dicho estándar. 
 EMF Core consiste de tres partes fundamentales \cite{steinberg2008emf}:
 \begin{description}
-\item[EMF:] Incluye un meta modelo (Ecore) para describir modelos y soporte en tiempo de ejecución para los modelos incluyendo notificación de cambios, persistencia con serialización XML, y una API para manejar objetos EMF.
+\item[EMF:] Incluye un meta modelo (Ecore) para describir modelos y soporte en tiempo de ejecución para los modelos, incluyendo notificación de cambios, persistencia con serialización XML, y una API para manejar objetos EMF.
 
-\item[EMF.Edit:] Incluye clases genéricas reusables, para construir editores de modelos EMF.
+\item[EMF.Edit:] Incluye clases genéricas reusables para construir editores de modelos EMF.
 
 \item[EMF.Codegen:] La generación de código de EMF permite generar cualquier elemento necesario para construir un editor de modelos EMF completo. Incluye una interfaz gráfica (GUI) donde se pueden especificar opciones de generación, y llamar a los generadores.
 \end{description}
 
 \subsection{Papyrus}
 Papyrus es una herramienta de modelado gráfico para UML2 basado en Eclipse. Al ser una herramienta de MDE, provee generación de código y permite interacción o conexión con herramientas externas de forma que los modelos sean los artefactos principales del proceso de desarrollo.
-Papyrus también posee muchas características para diseño de Domain Specific Modelling Languages (DSMLs) utilizando el concepto de perfiles UML, y por defecto incluye un conjunto de plug-ins de extensiones (perfiles UML 2) predefinidos dedicados a aplicaciones embebidas en tiempo real, como los estándares OMG (Object Management Group) SysML, MARTE, CCM, y LwCCM.
+Papyrus también posee muchas características para diseño de Domain Specific Modeling Languages (DSMLs) utilizando el concepto de perfiles UML, y por defecto incluye un conjunto de plug-ins de extensiones (perfiles UML 2) predefinidos dedicados a aplicaciones embebidas en tiempo real, como los estándares OMG (Object Management Group) SysML, MARTE, CCM, y LwCCM.
 
 Algunas de las características de Papyrus descriptas en su propia página web, son representadas en la Figura \ref{fig:marco:papyrus_editor}.
 
@@ -278,15 +288,15 @@ Acceleo es una herramienta de generación de código que implementa la especific
 \end{figure}
 
 \subsection{ATL}
-ATL (ATL Transformation Language) es un lenguaje y herramienta de transformación de modelos. Para MDE, ATL provee formas de producir un conjunto de modelos destino, a partir de un conjunto de modelos origen. Una transformación de ATL se compone de reglas que definen como los elementos de los modelos de origen se obtienen y navegan para crear e inicializar los elementos de los modelos destino. \cite{atl}
+ATL (ATL Transformation Language) es un lenguaje y herramienta de transformación de modelos. Para MDE, ATL provee formas de producir un conjunto de modelos destino, a partir de un conjunto de modelos origen. Una transformación de ATL se compone de reglas que definen cómo los elementos de los modelos de origen se obtienen y navegan para crear e inicializar los elementos de los modelos destino. \cite{atl}
 
 Una transformación de modelo a modelo se corresponderá con un módulo ATL. Estos módulos se encargan de definir dicha transformación, y están compuestos por los siguientes elementos \cite{atloverview}:
 
 \begin{itemize}
     \item una sección \textbf{header} (encabezado) que define algunos atributos relativos al módulo de la transformación
-    \item una sección opcional \textbf{import}. que permite importar librerías existentes de ATL
-    \item un conjunto de helpers que se pueden ver como el equivalente de ATL a los métodos de Java
-    \item un conjunto de reglas que definen cómo los modelos de destino serán generados a partir de los modelos de origen
+    \item una sección opcional \textbf{import} que permite importar librerías existentes de ATL
+    \item un conjunto de \textbf{helpers} que se pueden ver como el equivalente de ATL a los métodos de Java
+    \item un conjunto de \textbf{reglas} que definen cómo los modelos de destino serán generados a partir de los modelos de origen
 \end{itemize}
 
 \section{MDE en redes de computadoras}
@@ -295,13 +305,13 @@ El artículo \cite{essaadi2017mde} presenta un enfoque de ingeniería dirigida p
 Los tres niveles de abstracción definidos permiten construir: modelos de dominio específico, descripciones de arquitectura basada en componentes, y modelos específicos a la plataforma. También se definen transformaciones entre estos tres niveles.
 
 \subsection{YANG}
-YANG es un lenguaje de modelado utilizado para modelar configuración y estado de datos utilizados por el protocolo de configuración de redes NETCONF (Network Configuration Protocol), así como sus llamadas a procedimientos remotos, y notificaciones.
+YANG es un lenguaje de modelado utilizado para modelar configuración y estado de datos utilizados por el protocolo de configuración de redes NETCONF (Network Configuration Protocol).
 Los modelos de datos definidos en un modulo de YANG se representan en XML, y las operaciones NETCONF se utilizan para manipular los datos.
-A su vez, cada módulo define la jerarquía de datos que pueden ser utilizados para operaciones basadas en NETCONF, incluyendo configuración, estado de datos, llamadas a procedimientos remotos (RPCs), y notificaciones. Esto permite una descripción completa de todos los datos enviados entre un cliente y servidor NETCONF. \cite{bjorklund2010yang}
+A su vez, cada módulo define la jerarquía de datos que pueden ser utilizados para operaciones basadas en dicho protocolo, incluyendo configuración, estado de datos, llamadas a procedimientos remotos (RPCs), y notificaciones. Esto permite una descripción completa de todos los datos enviados entre un cliente y servidor NETCONF. \cite{bjorklund2010yang}
 
 \subsection{Metamodelo para Configuraciones en Dispositivos de Redes}
 En la tesis con nombre Metamodelo para Configuraciones en Dispositivos de Redes como Estándar Soportado en la Ingeniería Dirigida por Modelos, 
-se busca desarrollar una herramienta que estandarice y facilite la administración de redes, de forma de poder configurar cualquier protocolo, independientemente del proveedor, para lo que se desarrolló un metamodelo que permita generar dicha herramienta.
+se busca desarrollar una herramienta que estandarice y facilite la administración de redes de forma de poder configurar cualquier protocolo independientemente del proveedor, para lo que se desarrolló un metamodelo que permita generar dicha herramienta.
 
 En este trabajo se describe el metamodelo, desarrollando un DSL para la configuración de dispositivos de red, sin considerar la configuración de computadoras o servidores. Para esto se definen los componentes necesarios, que serán implementados mediante el DSL. En primer lugar se tienen los componentes Router y Switch, asociados a un componente de Interfaz, luego se definen los componentes Brand (Marca) y Protocol (Protocolo), y finalmente se tiene el componente de Configuración que une todos los conceptos.  En la Figura \ref{fig:marco:eclassdiagram} se puede ver el diagrama de clases utilizado para dicha implementación, mientras que en la Figura \ref{fig:marco:routerconfigurationexample} se tiene un ejemplo del resultado de un archivo de configuración para un router.
 Finalmente, no define ni busca integrarse con otra herramienta, sino que propone las bases con el metamodelo definido, que estandarizará y facilitará la configuración de redes. \cite{higuerametamodelo}

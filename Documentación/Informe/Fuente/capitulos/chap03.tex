@@ -1,8 +1,8 @@
-\chapter{Análisis de requerimientos} \label{Analisis de Requerimientos}
+\chapter{Análisis de Requerimientos} \label{Analisis de Requerimientos}
 
 La definición de requerimientos se comienza por aquellas necesidades a alto nivel que se buscan cubrir con la propuesta, es decir los requerimientos generales del proyecto, que identificaremos como \textbf{RQ}.
 
-A su vez, el análisis se puede separar en base a las dos clases de requerimientos que se pueden ver. Por un lado se tienen los requerimientos del lenguaje a definir, ya sea creado desde cero utilizando un DSL, o extendiendo UML, para que cumpla con el objetivo planteado; y por otro lado, se tienen los requerimientos de la herramienta que se utilizará, esto es, cuales son las características que debe proveer la herramienta para trabajar sobre el lenguaje.
+A su vez, el análisis se puede separar en base a las dos clases de requerimientos que se pueden ver. Por un lado se tienen los requerimientos del lenguaje a definir, ya sea creado desde cero utilizando un DSL o extendiendo UML, para que cumpla con el objetivo planteado; y por otro lado, se tienen los requerimientos de la herramienta que se utilizará, esto es, cuales son las características que debe proveer la herramienta para trabajar sobre el lenguaje.
 Estos requerimientos no necesitarán una notación particular, ya que todos los mencionados serán considerados en el alcance del proyecto.
 
 \section{Requerimientos del Proyecto}
@@ -22,9 +22,6 @@ De la misma forma que es necesario generar los archivos de configuración en bas
 
 En este último punto se puede incluir esta funcionalidad como uno de los objetivos, u optar por una herramienta existente que cumpla con este propósito. El formato o estructura del archivo de configuración generado definirá en gran medida la decisión de esta herramienta.
 
-%\section{Requerimientos Adicionales}
-%A continuación se detallan algunos requerimientos adicionales que, debido a su complejidad y trabajo necesario para su implementación, son considerados de forma separada a los mencionados anteriormente. 
-
 \subsection{RQ5 - Detección de red existente} \label{RQ5}
 Una característica que se encuentra presente en algunos productos (Véase \ref{Herramientas de visualización}) es la capacidad de detectar una red existente, y generar un modelo a partir de la misma. Este descubrimiento de modelos a partir de la información de la red existente podría ser de gran utilidad al momento de realizar la configuración inicial, ya que se evitaría la necesidad de crear el modelo desde cero. En su lugar, se detectaría la topología actual, y luego se trabajaría sobre esta base. Esta funcionalidad crece en importancia a medida que el tamaño de la topología inicial es mayor, e incluso podría ser imprescindible en casos donde el sistema o red objetivo sean del orden de cientos de dispositivos. 
 
@@ -36,7 +33,7 @@ En este punto cabe mencionar una herramienta que posee las características menc
 \subsection{RQ7 - Distribución de archivos generados entre los nodos} \label{RQ7}
 Finalmente, una característica a considerar es la capacidad de enviar los archivos de configuración generados a los nodos correspondientes. Esto es fundamental para lograr una centralización con la herramienta, y va de la mano con uno de  los objetivos mencionados, que es el de configurar los dispositivos de manera centralizada. Sin embargo, esto se puede lograr con diferentes herramientas, y dependiendo de la decisión que se tome en cuanto a la configuración de los nodos, se podría lograr de forma automática. 
 
-Un caso particular a considerar son los manejadores de configuración, o CMTs (por sus siglas en inglés Configuration Manager Tools), los cuales son servidores centralizados capaces de realizar configuraciones remotas a partir de scripts de configuración, en estos casos, la distribución de los archivos de configuración a los nodos no sería necesaria, dado que sólo se necesitaria generar un script de configuración a ser utilizado por el CMT en su servidor correspondiente. Algunos ejemplos de estas herramientas se vieron en la Sección \ref{Sistemas de Manejo de la Configuracion}.
+Un caso particular a considerar son los manejadores de configuración, o CMTs (por sus siglas en inglés Configuration Manager Tools), los cuales son servidores centralizados capaces de realizar configuraciones remotas a partir de scripts de configuración, en estos casos, la distribución de los archivos de configuración a los nodos no sería necesaria, dado que sólo se necesitaría generar un script de configuración a ser utilizado por el CMT en su servidor correspondiente. Algunos ejemplos de estas herramientas se vieron en la Sección \ref{Sistemas de Manejo de la Configuracion}.
 
 En caso de optar por no utilizar una herramienta de este estilo, sería necesario implementar la distribución y aplicación de las configuraciones generadas a partir del modelo, de forma que la propagación de cambios sea centralizada, y no se tenga la necesidad de aplicar la configuración a cada dispositivo, lo cual iría en contra del objetivo del proyecto.
 
@@ -65,25 +62,3 @@ Primero se debe crear el diagrama del estado actual de la red, y sus respectivos
 Analizando los requerimientos mencionados anteriormente, surge que aquellos fundamentales son \textbf{RQ1} (\ref{RQ1}), \textbf{RQ2} (\ref{RQ2}), \textbf{RQ3} (\ref{RQ3}), y \textbf{RQ4} (\ref{RQ4}), ya que son indispensables para tener un producto funcional, y que permita realizar el proceso de configuración en su totalidad, esto es, definir el modelo del sistema estudiado, generar los archivos de configuración mediante la transformación, y aplicar dicha configuración al sistema en cuestión. De la misma forma, tanto los requerimientos del lenguaje (\ref{Requerimientos del Lenguaje}) como de la herramienta (\ref{Requerimientos de la Herramienta}) se consideran dentro del alcance, debido a que son esenciales para tener una prueba de concepto.
 
 Por otro lado, dada la complejidad de los requerimientos \textbf{RQ5} (\ref{RQ5}), \textbf{RQ6} (\ref{RQ6}), y \textbf{RQ7} (\ref{RQ7}), se optó por dejarlos fuera del alcance. Más aún, se considera que la funcionalidad de descubrimiento y detección de una red podría abarcar un proyecto por sí misma. Sin embargo, se podría considerar la posibilidad de integración con una herramienta con estas características. Esto sucede en el caso del requerimiento \textbf{RQ7}, dado que la distribución de archivos de configuración vendrá dada por la integración con el CMT que se utilice, como se mencionó en dicha sección.
-
-% El objetivo de este capítulo es justificar el diseño metodológico elegido. La finalidad de una metodología bien descrita es explicitar los pasos mediante los cuales se obtienen los resultados, y por tanto el cumplimiento (o no) de los objetivos establecidos, de manera tal que pueda ser replicado por otro investigador. Si corresponde, también se evaluarán problemas metodológicos y se realizarán consideraciones éticas.
-% En algunas disciplinas este capítulo se denomina Materiales y métodos. 
-% En caso de que la investigación sea de carácter experimental, se debe especificar la siguiente información:
-
-
-% \begin{itemize}
-% \item	el tipo de investigación realizada (experimental, descriptiva, estudio de caso, encuesta de opinión, etc.)
-% \item	el modo de recolección de datos (análisis documental, observación participante o no, entrevista o cuestionario, etc.)
-% \item	población o sujetos experimentales.
-% \item	protocolo de investigación, si corresponde  
-% \end{itemize}
-
-% En algunas disciplinas formales no es pertinente la inclusión de un capítulo que recoja una cierta metodología de trabajo. En tales casos, se espera que el tesista haga mención de cuestiones carácter metodológico en la Introducción.
-
-% El procesamiento del trabajo metodológico que no es imprescindible para la comprensión del texto puede incluirse en apéndices o anexos (Anexo \ref{Ane1}).
-
-
-
-%%% Local Variables:
-%%% TeX-master: "../main"
-%%% End:

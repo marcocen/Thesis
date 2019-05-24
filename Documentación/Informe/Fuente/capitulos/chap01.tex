@@ -1,16 +1,16 @@
 \chapter{Introducción}
 
 La configuración de una red de computadoras es el proceso mediante el cual se busca que los elementos de una red (switches, routers, PCs, hasta impresoras) tengan un estado determinado. El significado de estado puede variar dependiendo del dispositivo y del objetivo de los administradores, pudiendo ir desde una simple configuración de red hasta asegurar que un programa esté instalado o un archivo de configuración esté presente.
-Todo esto es un proceso costoso y proclive a errores debido a la continua evolución y diversidad de componentes conectados a la red.
+Todo esto es un proceso costoso y proclive a errores debido a la continua evolución y diversidad de componentes conectados a la red \cite{cmscost}.
 
 Este proceso de configuración se suele realizar a través de un proceso de codificación de scripts a bajo nivel que se torna repetitivo y, sin protocolos consensuados entre los integrantes del grupo de administración de dicha red, muchas veces caótico.
 
-Algunas herramientas permiten visualizar información general de una red (ej.: LanFlow, Network Notepad y Cade) y de esta forma lograr una comprensión global de su estructura y componentes, pero esto no soluciona los problemas inherentes a impactar una configuración de forma manual, por lo cual si bien se tiene una mejor comprensión de la red, el proceso sigue siendo repetitivo y caótico.
+Algunas herramientas permiten visualizar información general de una red (ej.: LanFlow\cite{lanflow}, Network Notepad\cite{networknotepad} y Cade) y de esta forma lograr una comprensión global de su estructura y componentes, pero esto no soluciona los problemas inherentes a impactar una configuración de forma manual, por lo cual si bien se tiene una mejor comprensión de la red, el proceso sigue siendo repetitivo y caótico.
 
 Una potencial solución a estos problemas es contar con un modelo que represente simultáneamente la estructura de la red, sus componentes y la configuración de los mismos. Esto sería acompañado de cierta automatización que permita generar scripts de configuración a partir de necesidades expresadas en el modelo de visualización a más alto nivel de abstracción.
-Con esta solución no sólo se soluciona el problema de comprensión gobal sino que simplifica la comunicación entre los integrantes del grupo y finalmente se elimina la necesidad de generar scripts de configuración manualmente.
+Con esta solución no sólo se resuelve el problema de comprensión gobal sino que simplifica la comunicación entre los integrantes del grupo y finalmente se elimina la necesidad de generar scripts de configuración manualmente.
 
-Teniendo en cuenta esta solución potencial, la Ingeniería Dirigida por Modelos (MDE) parece ser una excelente herramienta para lograr implementarla. MDE propone partir de una abstracción del problema (un modelo del problema) y mediante sucesivas transformaciones construir el producto de software deseado. Para lograr la abstracción necesaria es fundamental contar con un lenguaje de modelado apropiado que permita representar los elementos involucrados.
+Teniendo en cuenta esta solución potencial, la Ingeniería Dirigida por Modelos (MDE) parece ser una excelente herramienta para lograr implementarla. MDE propone partir de una abstracción del problema (un modelo del problema) y mediante sucesivas transformaciones construir el producto de software deseado\cite{kent2002model}. Para lograr la abstracción necesaria es fundamental contar con un lenguaje de modelado apropiado que permita representar los elementos involucrados.
 
 
 El objetivo de este proyecto consistirá entonces, en la definición de un lenguaje de modelado de la estructura de la red y de sus componentes, así como la generación automática de los scripts de configuración de la red. En particular, los objetivos específicos que se desean analizar son los siguientes:
