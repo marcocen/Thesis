@@ -2,8 +2,6 @@
 numbers=noenddot, headinclude, footinclude , index=totoc, twoside,
 openright ]{scrbook}
 \include{aux/includes}
-% Qué partes se incluyen en la generación del documento
-% \includeonly{FrontMatter/Cover,MainMatter/TimeConstraints,MainMatter/ImplRefin,MainMatter/Examples,Appendix/Proofs}
 
 \begin{document}
 % Front matter
@@ -26,8 +24,6 @@ openright ]{scrbook}
 \include{capitulos/chap06}
 \include{capitulos/chap07}
 \include{capitulos/chap08}
-% Para ágregar un \newpage en la tabla de contenidos
-% \addtocontents{toc}{\protect\newpage}}
 \addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
 
 % Back matter

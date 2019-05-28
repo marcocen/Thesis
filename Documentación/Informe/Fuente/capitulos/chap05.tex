@@ -46,7 +46,7 @@ Los atributos de cada componente fueron seleccionados en base a la información 
 \subsubsection{Nodo Lógico}
 De la misma forma, los nodos lógicos fueron seleccionados en base a las decisiones de definición de dominio previamente realizadas, por lo tanto, se considerarán como especialización de Lógico (Lógical): Firewall, Sistema Operativo (OS), Firmware, Ambiente de Ejecución (Runtime), Servidor de Aplicaciones (ApplicationServer), Base de Datos (DBEngine), y Servidor HTTP (HTTPServer).
 
-A su vez, cada clase tiene una especialización en base los componentes de software que se consideraron para cada uno, por lo que se tienen las especializaciones Java para Runtime; Tomcat para ApplicationServer; Postgresql y MySQL para DBEngine; y Apache para HTTPServer. 
+A su vez, cada clase tiene una especialización en base a los componentes de software que se consideraron para cada uno, por lo que se tienen las especializaciones Java para Runtime; Tomcat para ApplicationServer; Postgresql y MySQL para DBEngine; y Apache para HTTPServer. 
 
 En base a esto, el metamodelo del componente Lógico se puede ver en la Figura \ref{fig:uml:logical}.
 
@@ -80,7 +80,7 @@ Luego, se tiene la configuración de Registro (Registry), que aplica solamente a
 También se tiene configuración de tipo Archivo (File), que representa las diferentes acciones que se pueden realizar sobre los archivos del sistema.
 
 Finalmente, se tiene una especialización para cada tipo de componente de software, los cuales se corresponderán con los componentes de Nodo Lógico que se mencionaron previamente. 
-Cada instancia de configuración de estas herramientas representa una instancia del componente de software asociado a un componente del Nodo Lógico. De esta forma, por ejemplo, se puede tener una instancia de nodo Lógico de base de datos (DBEngine), el cual a su vez puede tener varias instancias de una base de datos, dicho de otra forma, un servicio de base de datos (MySQL) podrá tener varias instancias de base de datos (development, production).
+Cada instancia de configuración de estas herramientas representa una instancia del componente de software asociado a un componente del Nodo Lógico. De esta forma, por ejemplo, se puede tener una instancia de nodo Lógico de base de datos (DBEngine), la cual a su vez puede tener varias instancias de una base de datos, dicho de otra forma, un servicio de base de datos (MySQL) podrá tener varias instancias de base de datos (development, production).
 Lo mismo aplica para cada uno de los componentes de software, cada instancia de Nodo Lógico potencialmente puede tener asociadas varias instancias de Configuración.
 
 Con el mismo análisis que se realizó para definir los atributos de los componentes Lógicos, se seleccionaron los atributos disponibles en los componentes de configuración. Los atributos de cada componente representan las capacidades de configuración que brinda la herramienta de manejo de configuración (CMTs) para dicho componente.
@@ -103,7 +103,7 @@ El metamodelo que representará la solución propuesta se puede ver en la Figura
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.8\textwidth] {figures/uml_diagrams/solution.png}
+    \includegraphics[width=\textwidth] {figures/uml_diagrams/solution.png}
     \caption{Representación UML de la solución propuesta.}
     \label{fig:uml:solution}
 \end{figure}
@@ -407,10 +407,9 @@ Para instalar dichas transformaciones en forma de plug-in es necesario generar u
 
 A continuación se presentan a modo de resumen dos tablas que mapean los distintos elementos del modelo con su resultado luego de ejecutar cada transformación.
 
-
 En la tabla \ref{resumen:1} se pueden observar los elementos generados a partir de la transformación mdcms2puppet, mientras que en la tabla \ref{resumen:2} se encuentran los archivos de información generados por la transformación mdcms2info.
-\begin{table}[H]
-    \begin{adjustwidth}{-0.5in}{-1in}
+\begin{table}[htbp]
+    \begin{adjustwidth}{-0.75in}{-0.5in}
         \centering
         \begin{center}
         \begin{tabular}{ll}
@@ -426,12 +425,15 @@ En la tabla \ref{resumen:1} se pueden observar los elementos generados a partir 
             PostgreSQL & \texttt{modules/device/manifests/<devicename>/<postgresqlname>.pp}\\
             Tomcat & \texttt{modules/device/manifests/<devicename>/<tomcatname>.pp}\\
             ApacheVhost & \texttt{modules/configurations/manifests/apache/<vhostname>.pp}\\
-            FirewallRule & \texttt{modules/configurations/manifests/firewall/<firewallname>.pp}\\
-            JavaOracle & \texttt{modules/configurations/manifests/java/<javaoraclename>.pp}\\
+            FirewallRule & \texttt{modules/configurations/manifests/}\\
+            & \texttt{firewall/<firewallname>.pp}\\
+            JavaOracle & \texttt{modules/configurations/manifests/}\\
+            & \texttt{java/<javaoraclename>.pp}\\
             MySQLDB & \texttt{modules/configurations/manifests/db/<dbname>.pp}\\
             PSQLDB & \texttt{modules/configurations/manifests/db/<psqldbname>.pp}\\
             Tomcat & \texttt{modules/configurations/manifests/tomcat/<tomcatname>.pp}\\
-            RegistryEntry & \texttt{modules/configurations/manifests/OS/<registryentryname>.pp}\\
+            RegistryEntry & \texttt{modules/configurations/manifests/}\\
+            & \texttt{OS/<registryentryname>.pp}\\
             File & \texttt{modules/configurations/manifests/OS/<filename>.pp}  \\
         \end{tabular}
         \caption{Elementos generados en transformación Puppet}\label{resumen:1}
@@ -439,20 +441,20 @@ En la tabla \ref{resumen:1} se pueden observar los elementos generados a partir 
     \end{adjustwidth}
 \end{table}
 
-\begin{table}
+\begin{table}[htbp]
 \begin{center}
-\begin{tabular}{ll}
-Elemento de modelo & Elemento generado en transformación Información\\
-\hline
-PC & \texttt{Information/<pcname>/<pcname>.pp}\\
-Server & \texttt{Information/<servername>/<servername>.pp}\\
-OperatingSystem & \texttt{Information/<devicename>/<operatingsystemname>.pp}\\
-FreeForm & \texttt{Configuration/<freeformname>.pp}\\
-Switch & \texttt{Information/<switchname>/<switchname>.pp}\\
-Router & \texttt{Information/<routername>/<routername>.pp}\\
-Peripheral & \texttt{Information/<peripheralname>/<peripheralname>.pp}\\
-Firmware & \texttt{Information/<firmwarename>/<firmwarename>.pp}\\
-\end{tabular}
+    \begin{tabular}{ll}
+    Elemento de modelo & Elemento generado en transformación Información\\
+    \hline
+    PC & \texttt{Information/<pcname>/<pcname>.pp}\\
+    Server & \texttt{Information/<servername>/<servername>.pp}\\
+    OperatingSystem & \texttt{Information/<devicename>/<operatingsystemname>.pp}\\
+    FreeForm & \texttt{Configuration/<freeformname>.pp}\\
+    Switch & \texttt{Information/<switchname>/<switchname>.pp}\\
+    Router & \texttt{Information/<routername>/<routername>.pp}\\
+    Peripheral & \texttt{Information/<peripheralname>/<peripheralname>.pp}\\
+    Firmware & \texttt{Information/<firmwarename>/<firmwarename>.pp}\\
+    \end{tabular}
 \caption{Elementos generados en transformación Información}\label{resumen:2}
 \end{center}
 \end{table}

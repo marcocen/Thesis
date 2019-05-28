@@ -34,7 +34,7 @@ Es importante notar que esta herramienta se basa en la detección y generación 
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.8\textwidth]{figures/marco_teorico/solarwinds.png}
+    \includegraphics[width=\textwidth]{figures/marco_teorico/solarwinds.png}
     \caption{Ejemplo de diagrama utilizando SolarWinds. \cite{solarwinds}}
     \label{fig:marco:solarwinds}
 \end{figure}
@@ -192,9 +192,9 @@ Las transformaciones también pueden ser aplicadas a múltiples modelos origen, 
     \label{fig:marco:transformation}
 \end{figure}
 
-De la misma forma en que existen transformaciones para obtener modelos de salida a partir de los modelos de origen, conocidas como transformaciones Model-To-Model, también se pueden generar transformaciones de modelo a texto, conocidas como Model-To-Text. El estándar de la transformación de modelo a texto MOF (mof2text) describe como pasar de un modelo a varios artefactos de texto, ya sea código, especificaciones de configuración, reportes, documentos, etc. En esencia, describe cómo obtener una representación en texto a partir de un modelo. Una forma de realizar esta transformación es mediante el uso de plantillas (\textit{templates}), donde el texto que se genera a partir de los modelos se especifica a partir de un conjunto de plantillas de texto, que son parametrizadas con los elementos del modelo en cuestión.
+De la misma forma en que existen transformaciones para obtener modelos de salida a partir de los modelos de origen, conocidas como transformaciones Model-To-Model, también se pueden generar transformaciones de modelo a texto, conocidas como Model-To-Text. El estándar de la transformación de modelo a texto MOF (mof2text) describe como pasar de un modelo a varios artefactos de texto, ya sea código, especificaciones de configuración, reportes, documentos, etc. En esencia, describe cómo obtener una representación en texto a partir de un modelo. Una forma de realizar esta transformación es mediante el uso de plantillas (\textit{templates}), donde el texto que se genera a partir de los modelos se especifica a partir de un conjunto de plantillas de texto, que son parametrizadas con los elementos del modelo en cuestión. \cite{mof_model2text}
 
-En este enfoque un \textit{template}, o plantilla, especifica un texto con marcadores a rellenar con datos que serán extraídos de los modelos. Estos marcadores son expresiones que se describen utilizando entidades del metamodelo y consultas (\textbf{queries}) para seleccionar y extraer los valores de los modelos. Estos valores son entonces convertidos a texto utilizando como base un lenguaje de expresiones, y alguna librería de manejo de \textit{strings}. \cite{mof_model2text}
+En este enfoque un \textit{template}, o plantilla, especifica un texto con marcadores a rellenar con datos que serán extraídos de los modelos. Estos marcadores son expresiones que se describen utilizando entidades del metamodelo y consultas (\textbf{queries}) para seleccionar y extraer los valores de los modelos. Estos valores son entonces convertidos a texto utilizando como base un lenguaje de expresiones, y alguna librería de manejo de \textit{strings}.
 
 \subsection{Diagramas de deployment}
 Un Diagrama de \textit{deployment} de UML es una representación del estado actual de la configuración de los nodos y los componentes que se ejecutan en esos nodos. Estos diagramas muestran el hardware del sistema, el software instalado en dicho sistema, y el middleware que conecta las maquinas entre sí. \cite{ambler2018deployment}
@@ -278,7 +278,7 @@ Algunas de las características de Papyrus descriptas en su propia página web, 
 \end{figure}
 
 \subsection{Acceleo}
-Acceleo es una herramienta de generación de código que implementa la especificación del estándar para transformación de modelo a texto MOF Model to Text Languange del Object Management Group (OMG). Algunas de las características que el IDE provee a los desarrolladores son: sintaxis simple, generación de código eficiente, y herramientas avanzadas equivalentes a las de Java Development Tools. Su propósito es el de asistir al desarrollador durante el ciclo de vida de sus generadores de código. \cite{acceleo}
+Acceleo es una herramienta de generación de código que implementa la especificación del estándar para transformación de modelo a texto MOF Model to Text Languange del Object Management Group (OMG). Algunas de las características que el IDE provee a los desarrolladores son: sintaxis simple, generación de código eficiente, y herramientas avanzadas equivalentes a las de Java Development Tools. Su propósito es el de asistir al desarrollador durante el ciclo de vida de sus generadores de código. Como se ve en la Figura \ref{fig:marco:acceleo_transformation} \cite{acceleo}, Acceleo toma un modelo de entrada y una plantilla que especifica el esqueleto del código a generar junto con expresiones a evaluarse dinámicamente con información del modelo, y tras la ejecución del motor, se genera código que contiene dicho esqueleto y los textos generados automáticamente.
 
 \begin{figure}[htbp]
     \centering
