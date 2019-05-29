@@ -9,7 +9,7 @@ El informe del proyecto de grado, tanto en formato PDF como su código fuente se
 - [Informe del Proyecto](/Documentaci%C3%B3n/Informe/Informe.pdf)
 - [Código Fuente del Informe](/Documentaci%C3%B3n/Informe/Fuente)
 
-Los manuales de instalación y uso de los plug-ins generados para el proyecto se encuentran el directorio Manuales:
+Los manuales de instalación y uso de los plug-ins generados para el proyecto se encuentran en el directorio [Manuales](/Documentaci%C3%B3n/Manuales):
 - [Manual de Instalación](/Documentaci%C3%B3n/Manuales/Manual%20de%20Instalaci%C3%B3n/Manual%20de%20Instalaci%C3%B3n.pdf)
 - [Manual de Uso](/Documentaci%C3%B3n/Manuales/Manual de Uso/Manual de Uso.pdf)
 
