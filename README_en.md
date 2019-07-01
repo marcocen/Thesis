@@ -11,9 +11,9 @@ The installation manual and usage guide of the generated plug-ins can be found i
 
 ## Software
 The source code as well as the binaries can be found in the Software directory.
-Inside the directory [Binaries](Software/Binaries) you can find the generated plug-ins generados, mientras que en el directorio [Fuentes](Software/Fuentes) se encuentra el código fuente utilizado.
+Inside the directory [Binaries](Software/Binaries) you can find the generated plug-ins, and in the directory [Sources](Software/Sources) you can find the source code.
 
-### Código Fuente
+### Source Code
 - [profile](/Software/Fuentes/profile)
 - [mdcm2puppet](/Software/Fuentes/mdcm2puppet)
 - [mdcm2puppet.ui](/Software/Fuentes/mdcm2puppet.ui)
